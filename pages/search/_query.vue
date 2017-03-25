@@ -3,11 +3,11 @@ section.container
   .column
 
     img#gif( :src="link", v-if="format == 'gif' || format != 'gifv'")
-    video(v-else-if="format == 'mp4'", preload="auto", autoplay, loop, muted)
+    video( v-else-if="format == 'mp4'", preload="auto", autoplay, loop, muted)
       source( :src="addExt('mp4')", type="video/mp4")
     div( v-else-if="isGfycat()", style='position:relative;padding-bottom:57%')
       iframe(src='https://gfycat.com/ifr/WickedNewFlyingfox' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
-    video(v-else, preload="auto", autoplay, loop, muted)
+    video( v-else, preload="auto", autoplay, loop, muted)
       source( :src="addExt('webm')", type="video/webm")
     #blurb {{ blurb }}
     #actions
@@ -32,7 +32,7 @@ import axios from '~plugins/axios'
 export default {
   asyncData({ params, error }) {
     if (params.query[0] == '#') return axios.get(`http://54.169.131.28/api/gifs/tag/${params.query.substring(1)}`)
-    else return axios.get(`http://localhost:3000/api/gifs/${params.query}`)
+    else return axios.get(`http://54.169.131.28/api/gifs/${params.query}`)
       .then((res) => {
         return res.data
       })
@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     shareToWhatsapp: function () {
-      return "whatsapp://send?text=http://localhost:3000/api/gifs/" + '#' + this.tag
+      return "whatsapp://send?text=http://54.169.131.28/api/gifs/" + '#' + this.tag
     },
     format: function () {
       return this.link.split('.').pop()
@@ -63,7 +63,7 @@ export default {
       return this.link.match(/https:\/\/gfycat\.com/)
     },
     getMore() {
-      axios.get(`http://localhost:3000/api/gifs/${this.terms.join('_')}?count=10`)
+      axios.get(`http://54.169.131.28/api/gifs/${this.terms.join('_')}?count=10`)
         .then((res) => {
           this.train = res.data
           let next = this.train.shift()
