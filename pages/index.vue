@@ -1,50 +1,47 @@
-<template>
-  <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      USERS
-    </h1>
-    <ul class="users">
-      <li v-for="(user, index) in users" class="user">
-        <nuxt-link :to="{ name: 'id', params: { id: index }}">
-          {{ user.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </section>
+<template lang="pug">
+section.container.flex.col#splash
+  img.logo.title(src="https://placekitten.com/700/200" alt="iHooke Logo")
+  input#search(ref="input" type="search")
+  #buttons
+    button( @click="clickSearch(false)") Search
+  p OR
+  button( @click="clickSearch(true)") Get Lucky
 </template>
 
 <script>
-import axios from '~plugins/axios'
-
 export default {
-  async data () {
-    let { data } = await axios.get('/api/users')
+  data () {
     return {
-      users: data
     }
   },
   head () {
     return {
-      title: 'Users'
+      title: 'iHooke'
+    }
+  },
+  methods: {
+    clickSearch(getLucky) {
+      let input = this.$refs.input.value
+      if (getLucky) {
+        this.$router.push({path:'search/a', params: {term:'a'}})
+      }
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 .title
-{
-  margin: 30px 0;
-}
-.users
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.user
-{
-  margin: 10px 0;
-}
+  margin: 30px 0
+
+#splash
+  align-items: center
+  justify-content: center
+
+#search
+  width: 60%
+  max-width: 600px
+
+#buttons
+  margin : 10px
 </style>
