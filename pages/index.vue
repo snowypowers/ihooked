@@ -1,11 +1,12 @@
 <template lang="pug">
 section.container.flex.col#splash
   img.logo.title(src="../assets/img/name.png" alt="iHooke Logo")
-  input#search(ref="input" type="search")
+  #input-container
+    b-form-input#search(ref="input", type="search", placeholder="What's interesting today", v-model:state="query")
   #buttons
-    button( @click="clickSearch(false)") Search
+    b-button( @click="clickSearch(false)") Search
   p OR
-  button( @click="clickSearch(true)") Get Lucky
+  b-button( @click="clickSearch(true)") Get Lucky
 </template>
 
 <script>
@@ -13,6 +14,7 @@ export default {
   layout: 'landing',
   data () {
     return {
+      query: ""
     }
   },
   head () {
@@ -22,8 +24,7 @@ export default {
   },
   methods: {
     clickSearch(getLucky) {
-      let input = this.$refs.input.value
-      input = input.split(' ').join('_')
+      let input = this.query.split(' ').join('_')
       if (getLucky) {
         this.$router.push({path:'search/a', params: {term:'a'}})
       } else {
@@ -42,7 +43,7 @@ export default {
   align-items: center
   justify-content: center
 
-#search
+#input-container
   width: 60%
   max-width: 600px
 
