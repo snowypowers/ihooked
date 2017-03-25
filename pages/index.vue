@@ -4,7 +4,7 @@ section.container.flex.col#splash
   #input-container
     b-form-input#search(ref="input", type="search", placeholder="What's interesting today", v-model:state="query")
   #buttons
-    b-button( @click="clickSearch(false)") Search
+    b-button( @click="clickSearch(false)") Hook Me Up
   p OR
   b-button( @click="clickSearch(true)") Get Lucky
 </template>
