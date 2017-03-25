@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "bootstrap-vue": "^0.10.1",
     "cross-env": "^3.1.4",
     "express": "^4.14.0",
     "nuxt": "latest"
@@ -37,6 +38,7 @@
     "pug": "^2.0.0-beta11",
     "pug-loader": "^2.3.0",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1"
+    "stylus-loader": "^3.0.1",
+    "vue-material": "^0.7.1"
   }
 }

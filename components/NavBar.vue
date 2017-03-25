@@ -1,9 +1,11 @@
 <template lang="pug">
-#nav
-  #homeicon H
-  #navsearch
-    input(ref="navsearch" type="search")
-    button( @click="search") S
+b-navbar#nav(type="inverse")
+  b-link.navbar-brand#logo
+    span H
+  b-nav#navsearch(is-nav)
+    b-form-input#searchinput(ref="navsearch" type="search")
+    b-button( @click="search")
+      i.material-icons search
 </template>
 
 <script>
@@ -20,14 +22,14 @@ export default {
 
 <style lang="stylus" scoped>
 #nav
-  height: 40px
-  width: 100%
+  flex-flow: row
+  background-color: #E6AF40
 
-#homeicon
+#logo
+  flex: 1
   margin: 0 10px
 
-#navsearch
-  width:100%
-  position: absolute
-  left: 0
+#searchinput
+  width: 150px
+  margin: 0 10px
 </style>

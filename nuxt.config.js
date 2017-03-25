@@ -10,7 +10,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '//fonts.googleapis.com/icon?family=Material+Icons'},
     ]
   },
   /*
@@ -21,6 +22,7 @@ module.exports = {
   ** Add axios globally
   */
   build: {
-    vendor: ['axios']
-  }
+    vendor: ['axios', 'bootstrap-vue']
+  },
+  plugins: ['~plugins/bootstrap-vue']
 }

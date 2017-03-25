@@ -1,6 +1,6 @@
 <template lang="pug">
 section.container.flex.col#splash
-  img.logo.title(src="https://placekitten.com/700/200" alt="iHooke Logo")
+  img.logo.title(src="../assets/img/name.png" alt="iHooke Logo")
   input#search(ref="input" type="search")
   #buttons
     button( @click="clickSearch(false)") Search
@@ -10,6 +10,7 @@ section.container.flex.col#splash
 
 <script>
 export default {
+  layout: 'landing',
   data () {
     return {
     }

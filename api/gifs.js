@@ -1,31 +1,31 @@
 var router = require('express').Router()
-
-const gifs = [
-  {
-    tag: 0,
-    terms: ["a", "b"],
-    link: "https://media.giphy.com/media/Ssp4nSr5YkM8g/giphy.gif",
-    blurb: "Hi this is a blurb 0"
-  },
-  {
-    tag: 1,
-    terms: ["a","c"],
-    link: "https://media.giphy.com/media/sFhRQMzT8ag6Y/giphy.gif",
-    blurb: "Hi this is a blurb 1"
-  },
-  {
-    tag: 2,
-    terms: ["a", "b"],
-    link: "https://media.giphy.com/media/rFA5aTDGXmHOU/giphy.gif",
-    blurb: "Hi this is a blurb 2"
-  },
-  {
-    tag: 3,
-    terms: ["a", "b","c"],
-    link: "https://media.giphy.com/media/xbAmZlEGejTDG/giphy.gif",
-    blurb: "Hi this is a blurb 3"
-  }
-]
+var gifs = require('./db.js')
+// const gifs = [
+//   {
+//     tag: 0,
+//     terms: ["a", "b"],
+//     link: "https://media.giphy.com/media/Ssp4nSr5YkM8g/giphy.gif",
+//     blurb: "Hi this is a blurb 0"
+//   },
+//   {
+//     tag: 1,
+//     terms: ["a","c"],
+//     link: "https://media.giphy.com/media/sFhRQMzT8ag6Y/giphy.gif",
+//     blurb: "Hi this is a blurb 1"
+//   },
+//   {
+//     tag: 2,
+//     terms: ["a", "b"],
+//     link: "https://media.giphy.com/media/rFA5aTDGXmHOU/giphy.gif",
+//     blurb: "Hi this is a blurb 2"
+//   },
+//   {
+//     tag: 3,
+//     terms: ["a", "b","c"],
+//     link: "https://media.giphy.com/media/xbAmZlEGejTDG/giphy.gif",
+//     blurb: "Hi this is a blurb 3"
+//   }
+// ]
 
 /* GET gifs listing. */
 router.get('/gifs', function (req, res, next) {
@@ -44,7 +44,6 @@ router.get('/gifs/tag/:tag', function (req, res, next) {
 
 /* GET a random gif by search. */
 router.get('/gifs/:term', function (req, res, next) {
-
   let term = String(req.params.term).split('_')
   let selected = gifs.filter((x) => {
     for (let t of term) {
