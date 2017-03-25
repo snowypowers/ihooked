@@ -10,7 +10,7 @@ section.container
 import axios from '~plugins/axios'
 export default {
   asyncData ({ params, error }) {
-    return axios.get(`http://127.0.0.1:3000/api/gifs/tag/${params.tag}`)
+    return axios.get(`http://54.169.131.28:3000/api/gifs/tag/${params.tag}`)
     .then((res) => {
       return { ...res.data }
     })
