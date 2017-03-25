@@ -3,8 +3,8 @@ section.container
   .column
 
     img#gif( :src="link", v-if="format == 'gif' || format != 'gifv'")
-    video(v-else)
-      source( :src="webm", type="video/webm", autoplay, loop, muted)
+    video(v-else, preload="auto", autoplay, loop, muted)
+      source( :src="webm", type="video/webm")
     #blurb {{ blurb }}
     #social
       h2 Share!
