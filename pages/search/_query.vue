@@ -39,7 +39,7 @@ export default {
   },
   head () {
     return {
-      title: 'GIF  iHooke'
+      title: 'iHooked: GIF'
     }
   }
 }

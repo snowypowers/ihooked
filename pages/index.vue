@@ -1,12 +1,13 @@
 <template lang="pug">
 section.container.flex.col#splash
-  img.logo.title(src="../assets/img/name.png" alt="iHooke Logo")
+  img.logo.title(src="../assets/img/name.png" alt="iHooked Logo")
   #input-container
-    b-form-input#search(ref="input", type="search", placeholder="What's interesting today", v-model:state="query")
+    b-form-input#search(ref="input", type="search", placeholder="What's interesting today", v-model:state="query", @keyup.enter="clickSearch(false)")
   #buttons
     b-button( @click="clickSearch(false)") Hook Me Up
   p OR
   b-button( @click="clickSearch(true)") Get Lucky
+  p Get a random surprise!
 </template>
 
 <script>
@@ -19,7 +20,7 @@ export default {
   },
   head () {
     return {
-      title: 'iHooke'
+      title: 'iHooked: Home'
     }
   },
   methods: {
@@ -40,6 +41,7 @@ export default {
   margin: 30px 0
 
 #splash
+  min-height: 90vh
   align-items: center
   justify-content: center
 

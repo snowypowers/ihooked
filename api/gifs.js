@@ -27,7 +27,7 @@ router.get('/gifs/:term', function (req, res, next) {
     return true
   })
   //Word Search
-  if (!selected && term.length > 1) {
+  if (selected.length == 0 && term.length > 1) {
     selected = gifs.filter((x) => {
       for (let t of term) {
         if (x.terms.includes(t)) return true
@@ -35,7 +35,7 @@ router.get('/gifs/:term', function (req, res, next) {
       return false
     })
   }
-  if (!selected) {
+  if (selected.length == 0) {
     res.sendStatus(404)
     return
   }
