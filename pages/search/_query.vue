@@ -4,7 +4,7 @@ section.container
 
     img#gif( :src="link", v-if="format == 'gif' || format != 'gifv'")
     video(v-else)
-      source( :src="webm", type="video/webm")
+      source( :src="webm", type="video/webm", autoplay, loop, muted)
     #blurb {{ blurb }}
     #social
       h2 Share!
