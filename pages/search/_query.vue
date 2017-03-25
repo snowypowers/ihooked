@@ -3,8 +3,10 @@ section.container
   .column
 
     img#gif( :src="link", v-if="format == 'gif' || format != 'gifv'")
+    video(v-else-if="format == 'mp4'", preload="auto", autoplay, loop, muted)
+      source( :src="addExt('mp4')", type="video/mp4")
     video(v-else, preload="auto", autoplay, loop, muted)
-      source( :src="webm", type="video/webm")
+      source( :src="addExt('webm')", type="video/webm")
     #blurb {{ blurb }}
     #social
       h2 Share!
@@ -41,10 +43,10 @@ export default {
     format: function() {
       return this.link.split('.').pop()
     },
-    webm: function() {
+    addExt: function(ext) {
       let base = this.link.split('.')
       base.pop()
-      return base.join('.') + ".webm"
+      return base.join('.') + "." + ext
     }
   },
   head () {
