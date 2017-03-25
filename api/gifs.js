@@ -44,12 +44,17 @@ router.get('/gifs/tag/:tag', function (req, res, next) {
 
 /* GET a random gif by search. */
 router.get('/gifs/:term', function (req, res, next) {
-  var term = String(req.params.term)
-  var selected = gifs.filter((x) => {
-    return x.terms.includes(term) ? true : false
-  })
 
-  res.json(selected[Math.floor(Math.random()*selected.length)])
+  let term = String(req.params.term).split('_')
+  let selected = gifs.filter((x) => {
+    for (let t of term) {
+      if (!x.terms.includes(t)) return false
+    }
+    return true
+  })
+  let ret = selected[Math.floor(Math.random()*selected.length)]
+  console.log("Searched: " + req.params.term + " Found: " + (ret?ret.tag:"NIL"))
+  res.json(ret)
 })
 
 module.exports = router

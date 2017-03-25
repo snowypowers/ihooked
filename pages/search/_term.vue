@@ -12,7 +12,7 @@ export default {
   asyncData ({ params, error }) {
     return axios.get(`http://127.0.0.1:3000/api/gifs/${params.term}`)
     .then((res) => {
-      return { ...res.data }
+      return res.data
     })
     .catch((e) => {
       error({ statusCode: 404, message: 'GIF not found' })
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      tag: 0,
+      tag: -1,
       terms: ['placeholder'],
       link: "https://media.giphy.com/media/mIzJ648c4qwve/giphy.gif",
       blurb: "Meow"

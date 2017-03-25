@@ -22,8 +22,11 @@ export default {
   methods: {
     clickSearch(getLucky) {
       let input = this.$refs.input.value
+      input = input.split(' ').join('_')
       if (getLucky) {
         this.$router.push({path:'search/a', params: {term:'a'}})
+      } else {
+        this.$router.push({path:'search/'+input, params: {term: input}})
       }
     }
   }
