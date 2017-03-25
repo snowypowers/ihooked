@@ -30,7 +30,7 @@ import axios from '~plugins/axios'
 export default {
   asyncData({ params, error }) {
     if (params.query[0] == '#') return axios.get(`http://54.169.131.28/api/gifs/tag/${params.query.substring(1)}`)
-    else return axios.get(`http://localhost:3000/api/gifs/${params.query}`)
+    else return axios.get(`http://54.169.131.28/api/gifs/${params.query}`)
       .then((res) => {
         return res.data
       })
@@ -61,7 +61,7 @@ export default {
       return this.link.match(/https:\/\/gfycat\.com/)
     },
     getMore() {
-      axios.get(`http://localhost:3000/api/gifs/${this.terms.join('_')}?count=10`)
+      axios.get(`http://54.169.131.28/api/gifs/${this.terms.join('_')}?count=10`)
         .then((res)=> {
           this.train = res.data
         })
