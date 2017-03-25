@@ -110,12 +110,13 @@ const data = [
   {
     tag: 19,
     terms: ["invertebrates", "vertebrates", "octopus", "insects", "molluscs", "crustaceans", "corals", "arachnids", "jellyfish"],
-    link: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-10/27/14/enhanced/webdr07/enhanced-2672-1445971850-8.jpg', blurb: 'Invertebrates are animals that neither possess nor develop a backbone, derived from the notochord. This includes all animals apart from the subphylum Vertebrata. Familiar examples of invertebrates include insects; crabs, lobsters and their kin; snails, clams, octopuses and their kin; starfish, sea-urchins and their kin; jellyfish, and worms.'
+    link: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-10/27/14/enhanced/webdr07/enhanced-2672-1445971850-8.jpg',
+    blurb: 'Invertebrates are animals that neither possess nor develop a backbone, derived from the notochord. This includes all animals apart from the subphylum Vertebrata. Familiar examples of invertebrates include insects; crabs, lobsters and their kin; snails, clams, octopuses and their kin; starfish, sea-urchins and their kin; jellyfish, and worms.'
   },
   {
     tag: 20,
     terms: ["atom", "ion", "cation", "anion"],
-    link: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-10/27/13/enhanced/webdr14/enhanced-2853-1445966850-8.jpg?no-auto',
+    link: 'https://img.buzzfeed.com/buzzfeed-static/static/2015-10/27/13/enhanced/webdr14/enhanced-2853-1445966850-8.jpg',
     blurb: 'An ion is an atom or a molecule in which the total number of electrons is not equal to the total number of protons. In chemical terms, if a neutral atom loses one or more electrons, it has a net positive charge and is known as a cation. If a neutral atom gains one or more electrons, it has a net negative charge and is known as an anion.'
   },
   {
@@ -127,7 +128,7 @@ const data = [
   {
     tag: 22,
     terms: ["circular", "motion", "roller", "coaster", "physics", "forces", "energy", "centripetal", "velocity", "acceleration", "force"],
-    link: 'http://giphy.com/gifs/roller-coaster-miniature-a8sQsPjd31jos',
+    link: 'https://media.giphy.com/media/a8sQsPjd31jos/giphy.gif',
     blurb: 'How is the ball able to make a complete loop without falling off? There is a minimum speed the ball must have before it is able to complete the loop without falling off. The ball must have sufficient centripetal acceleration to be able to complete the circular motion.'
   },
   {

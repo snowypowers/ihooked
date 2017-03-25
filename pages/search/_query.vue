@@ -2,7 +2,7 @@
 section.container
   .column
 
-    img#gif( :src="link", v-if="format == gif || format != gifv")
+    img#gif( :src="link", v-if="format == 'gif' || format != 'gifv'")
     video(v-else)
       source( :src="webm", type="video/webm")
     #blurb {{ blurb }}
@@ -44,7 +44,7 @@ export default {
     webm: function() {
       let base = this.link.split('.')
       base.pop()
-      return base + ".webm"
+      return base.join('.') + ".webm"
     }
   },
   head () {
