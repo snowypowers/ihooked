@@ -5,8 +5,7 @@ section.container
       source( :src="addExt('mp4')", type="video/mp4")
     div( v-else-if="isGfycat()", style='position:relative;padding-bottom:57%')
       iframe(src='https://gfycat.com/ifr/WickedNewFlyingfox' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
-    video( v-else-if="format == 'gifv'", preload="auto", autoplay, loop, muted)
-      source( :src="addExt('webm')", type="video/webm")
+    img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'")
     img#gif( :src="link", v-else)
     #blurb {{ blurb }}
     #actions
@@ -63,13 +62,11 @@ export default {
     },
     getMore() {
       axios.get(`http://localhost:3000/api/gifs/${this.terms.join('_')}?count=10`)
-        .then((res) => {
+        .then((res)=> {
           this.train = res.data
-          let next = this.train.shift()
-          this.tag = next.tag
-          this.terms = next.terms
-          this.link = next.link
-          this.blurb = next.blurb
+        })
+        .then(()=> {
+          this.getNext()
         })
         .catch((e) => {
           console.log("ERROR")
