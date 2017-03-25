@@ -2,9 +2,9 @@
 section.container
   .column
 
-    img#gif(:src="link", v-if="format == gif || format != gifv")
+    img#gif( :src="link", v-if="format == gif || format != gifv")
     video(v-else)
-      source(:src="webm", type="video/webm")
+      source( :src="webm", type="video/webm")
     #blurb {{ blurb }}
     #social
       h2 Share!
@@ -39,10 +39,10 @@ export default {
       return "whatsapp://send?text=http://localhost:3000/api/gifs/" + '#' + this.tag
     },
     format: function() {
-      return link.split('.').pop()
+      return this.link.split('.').pop()
     },
     webm: function() {
-      let base = link.split('.')
+      let base = this.link.split('.')
       base.pop()
       return base + ".webm"
     }
