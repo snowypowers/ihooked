@@ -1,7 +1,7 @@
 <template lang="pug">
 b-navbar#nav(type="inverse")
-  b-link.navbar-brand#logo
-    span H
+  b-link.navbar-brand(to="/")#logo
+    img#logo(src="../assets/img/logoblack.png")
   b-nav#navsearch(is-nav)
     b-form-input#searchinput(ref="navsearch" type="search")
     b-button( @click="search")
@@ -27,6 +27,8 @@ export default {
 
 #logo
   flex: 1
+  width: 40px
+  height: auto
   margin: 0 10px
 
 #searchinput
