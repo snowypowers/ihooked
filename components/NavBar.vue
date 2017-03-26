@@ -12,6 +12,7 @@ b-navbar#nav(type="inverse")
 export default {
   methods: {
     search() {
+      if (this.query == "") return
       let input = this.query.split(' ').join('_')
       this.$router.push({path:input, params: {term: input}})
     }
