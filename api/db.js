@@ -45,7 +45,7 @@ const data = [
   {
     tag: 8,
     terms: ['roller', 'coaster', 'force', 'forces', 'energy', 'gravitational', 'potential', 'energy', 'kinetic', 'conversion'],
-    link: 'http://giphy.com/gifs/physics-roller-coaster-OfcSFazRTAwJG',
+    link: 'https://media.giphy.com/media/OfcSFazRTAwJG/giphy.gif',
     blurb: 'The roller coaster experiences significant energy change along its journey throughout the track. This illustrates the conversion of energy between potential and kinetic forms caused by the forces acting on it.'
   },
   {
