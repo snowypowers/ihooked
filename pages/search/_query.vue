@@ -1,5 +1,5 @@
 <template lang="pug">
-section.container
+section.body
   .column
     .gif-container( @click="googleThis")
       video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
@@ -16,9 +16,12 @@ section.container
         h3 Share!
         a( :href="shareToWhatsapp", data-action="share/whatsapp/share")
           i.fa.fa-whatsapp
+        h3 Learn!
+        a( :href="shareToWhatsapp")
+          i.fa.fa-google
       #rand(v-if="train.length == 0")
         h3 More?
-        a( @click="getMore")
+        a( @click="getRandom")
           i.fa.fa-random
       #next(v-else)
         h3 More!
@@ -31,7 +34,7 @@ section.container
 <script>
 import axios from '~plugins/axios'
 export default {
-  transition (to, from) {
+  transition(to, from) {
     if (!from) return 'slide-left'
     return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
   },
@@ -63,19 +66,19 @@ export default {
     format: function () {
       return this.link.split('.').pop()
     },
-    fromGfycat: function() {
+    fromGfycat: function () {
       return this.isGfycat()
     },
-    fromGiphy: function() {
+    fromGiphy: function () {
       return this.isGiphy()
     },
-    gfycatEmbed: function() {
+    gfycatEmbed: function () {
       let hash = this.link.match(/https:\/\/gfycat\.com\/([\d\w]*)/)
       return "https://gfycat.com/ifr/" + hash[1]
     },
-    giphyEmbed: function() {
+    giphyEmbed: function () {
       let hash = this.link.match(/https:\/\/media\.giphy\.com\/media\/([\d\w]*)\/giphy\.gif/)
-      return "//giphy.com/embed/"+ hash[1] +"?html5=true"
+      return "//giphy.com/embed/" + hash[1] + "?html5=true"
     }
   },
   methods: {
@@ -87,14 +90,23 @@ export default {
     },
     getMore() {
       axios.get(`http://54.169.131.28/api/gifs/${this.terms.join('_')}?count=10`)
-        .then((res)=> {
+        .then((res) => {
           this.train = res.data
         })
-        .then(()=> {
+        .then(() => {
           this.getNext()
         })
         .catch((e) => {
           console.log("ERROR")
+        })
+    },
+    getRandom() {
+      return axios.get(`http://54.169.131.28/api/gifs/word`)
+        .then((res) => {
+          this.$router.push({ path: res.data.word, params: { term: res.data.word } })
+        })
+        .catch((e) => {
+          console.log("ERROR in getting word")
         })
     },
     getNext() {
@@ -110,7 +122,8 @@ export default {
       return base.join('.') + "." + ext
     },
     googleThis() {
-      window.location.href = "http://www.google.com/search?q=" + this.terms.join('+')
+      let googleLink = "http://www.google.com/search?q=" + this.terms.join('+')
+      window.open(googleLink, '_blank')
     }
   },
   head() {
@@ -124,7 +137,7 @@ export default {
 <style lang="stylus">
 .body
   width: 100%
-  padding: 20px 0
+  padding: 50px 0
   text-align: center
 
 .column
@@ -146,13 +159,13 @@ export default {
 
 #icons
   padding: 5px
-  font-size: 30px
+  font-size: 60px
   flex: 1
   border-right: rgba(0, 0, 0, 0.1) solid 0.1px
 
 #rand, #next
   padding: 5px 20px
-  font-size: 30px
+  font-size: 60px
 
 #actions
   display: flex
