@@ -70,3 +70,13 @@ a, a:hover, a:focus, a:visited
   opacity: 0;
   transform: translate(-30px, 0);
 }
+
+.spin {
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+  transition: transform .6s ease-in-out;
+}
+
+.spin:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}

@@ -13,16 +13,18 @@ section.body
     #blurb {{ blurb }}
     #actions
       #icons
-        h3 Share!
-        a( :href="shareToWhatsapp", data-action="share/whatsapp/share")
-          i.fa.fa-whatsapp
-        h3 Learn!
-        a( :href="shareToWhatsapp")
-          i.fa.fa-google
+        .icon-box
+          h3 Share!
+          a.primary( :href="shareToWhatsapp", data-action="share/whatsapp/share")
+            i.fa.fa-whatsapp.spin
+        .icon-box
+          h3 Learn!
+          a.primary( :href="googleLink", target="_blank")
+            i.fa.fa-google.spin
       #rand(v-if="train.length == 0")
         h3 More?
         a( @click="getRandom")
-          i.fa.fa-random
+          i.fa.fa-random.spin
       #next(v-else)
         h3 More!
         a( @click="getNext")
@@ -54,7 +56,7 @@ export default {
     return {
       tag: -1,
       terms: ['placeholder'],
-      link: "../assets/spin.gif",
+      link: "../assets/img/spin.gif",
       blurb: "Meow",
       train: []
     }
@@ -79,6 +81,9 @@ export default {
     giphyEmbed: function () {
       let hash = this.link.match(/https:\/\/media\.giphy\.com\/media\/([\d\w]*)\/giphy\.gif/)
       return "//giphy.com/embed/" + hash[1] + "?html5=true"
+    },
+    googleLink: function() {
+      return "http://www.google.com/search?q=" + this.terms.join('+')
     }
   },
   methods: {
@@ -101,13 +106,8 @@ export default {
         })
     },
     getRandom() {
-      return axios.get(`http://54.169.131.28/api/gifs/word`)
-        .then((res) => {
-          this.$router.push({ path: res.data.word, params: { term: res.data.word } })
-        })
-        .catch((e) => {
-          console.log("ERROR in getting word")
-        })
+      let t = this.terms[Math.round(Math.random() * this.terms.length)]
+      this.$router.push({ path:t, params: { term: t } })
     },
     getNext() {
       let next = this.train.shift()
@@ -146,6 +146,12 @@ export default {
   padding: 0 20px
   margin: 0 auto
 
+.icon-box
+  flex: 0 0
+
+.primary
+  color: #E6AF40
+
 #gif
   width: 100%
   max-width: 600px
@@ -158,9 +164,12 @@ export default {
   border-bottom: rgba(0, 0, 0, 0.1) solid 0.1px
 
 #icons
+  display: flex
   padding: 5px
   font-size: 60px
   flex: 1
+  flex-flow: row wrap
+  justify-content: space-around
   border-right: rgba(0, 0, 0, 0.1) solid 0.1px
 
 #rand, #next
