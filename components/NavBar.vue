@@ -3,7 +3,7 @@ b-navbar#nav(type="inverse")
   b-link.navbar-brand(to="/")#logo
     img#logo(src="../assets/img/logoblack.png")
   b-nav#navsearch(is-nav)
-    b-form-input#searchinput(ref="navsearch" type="search" v-model:state="query" @keyup.enter="search")
+    b-form-input#searchinput(ref="navsearch", type="search", v-model:state="query", @keyup.enter="search")
     b-button( @click="search")
       i.material-icons search
 </template>
@@ -13,7 +13,7 @@ export default {
   methods: {
     search() {
       let input = this.query.split(' ').join('_')
-      this.$router.push({path:'search/'+input, params: {term: input}})
+      this.$router.push({path:input, params: {term: input}})
     }
   },
   data() {

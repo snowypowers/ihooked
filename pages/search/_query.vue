@@ -1,12 +1,12 @@
 <template lang="pug">
 section.container
   .column
-    video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted)
+    video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
       source( :src="addExt('mp4')", type="video/mp4")
-    div( v-else-if="isGfycat()", style='position:relative;padding-bottom:57%')
+    div( v-else-if="isGfycat()", style='position:relative;padding-bottom:57%', key="gfycat")
       iframe(src='https://gfycat.com/ifr/WickedNewFlyingfox' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
-    img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'")
-    img#gif( :src="link", v-else)
+    img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'", key="gifv")
+    img#gif( :src="link", v-else, key="else")
     #blurb {{ blurb }}
     #actions
       #icons
@@ -28,6 +28,10 @@ section.container
 <script>
 import axios from '~plugins/axios'
 export default {
+  transition (to, from) {
+    if (!from) return 'slide-left'
+    return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+  },
   asyncData({ params, error }) {
     if (params.query[0] == '#') return axios.get(`http://54.169.131.28/api/gifs/tag/${params.query.substring(1)}`)
     else return axios.get(`http://54.169.131.28/api/gifs/${params.query}`)
