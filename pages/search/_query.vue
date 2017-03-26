@@ -1,14 +1,15 @@
 <template lang="pug">
 section.container
   .column
-    video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
-      source( :src="addExt('mp4')", type="video/mp4")
-    div( v-else-if="fromGfycat", style='position:relative;padding-bottom:57%', key="gfycat")
-      iframe( :src="gfycatEmbed" frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
-    div( v-else-if="fromGiphy")
-      iframe(:src="giphyEmbed" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen)
-    img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'", key="gifv")
-    img#gif( :src="link", v-else, key="else")
+    .gif-container( @dblclick="googleThis")
+      video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
+        source( :src="addExt('mp4')", type="video/mp4")
+      div( v-else-if="fromGfycat", style='position:relative;padding-bottom:57%', key="gfycat")
+        iframe( :src="gfycatEmbed" frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
+      div( v-else-if="fromGiphy")
+        iframe(:src="giphyEmbed" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen)
+      img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'", key="gifv")
+      img#gif( :src="link", v-else, key="else")
     #blurb {{ blurb }}
     #actions
       #icons
@@ -107,6 +108,9 @@ export default {
       let base = this.link.split('.')
       base.pop()
       return base.join('.') + "." + ext
+    },
+    googleThis() {
+      window.location.href = "http://www.google.com/search?q=" + this.terms.join('+')
     }
   },
   head() {
