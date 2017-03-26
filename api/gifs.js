@@ -42,7 +42,14 @@ function isEmpty(obj) {
 
 /* GET gifs listing. */
 router.get('/gifs', function (req, res, next) {
-  res.json(gifs)
+  let randGif = gifs[Math.floor(Math.random() * gifs.length)]
+  res.json(randGif)
+})
+
+router.get('/gifs/word', function(req, res, next) {
+  let randGif = gifs[Math.floor(Math.random() * gifs.length)]
+  let word = randGif.terms[Math.floor(Math.random() * randGif.terms.length)]
+  res.json({"word": word})
 })
 
 /* GET a gif by tag. */
