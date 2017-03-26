@@ -3,8 +3,10 @@ section.container
   .column
     video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
       source( :src="addExt('mp4')", type="video/mp4")
-    div( v-else-if="isGfycat()", style='position:relative;padding-bottom:57%', key="gfycat")
-      iframe(src='https://gfycat.com/ifr/WickedNewFlyingfox' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
+    div( v-else-if="fromGfycat", style='position:relative;padding-bottom:57%', key="gfycat")
+      iframe( :src="gfycatEmbed" frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen)
+    div( v-else-if="fromGiphy")
+      iframe(:src="giphyEmbed" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen)
     img#gif( :src="addExt('gif')", v-else-if="format == 'gifv'", key="gifv")
     img#gif( :src="link", v-else, key="else")
     #blurb {{ blurb }}
@@ -58,11 +60,27 @@ export default {
     format: function () {
       return this.link.split('.').pop()
     },
-
+    fromGfycat: function() {
+      return this.isGfycat()
+    },
+    fromGiphy: function() {
+      return this.isGiphy()
+    },
+    gfycatEmbed: function() {
+      let hash = this.link.match(/https:\/\/gfycat\.com\/([\d\w]*)/)
+      return "https://gfycat.com/ifr/" + hash[1]
+    },
+    giphyEmbed: function() {
+      let hash = this.link.match(/https:\/\/media\.giphy\.com\/media\/([\d\w]*)\/giphy\.gif/)
+      return "//giphy.com/embed/"+ hash[1] +"?html5=true"
+    }
   },
   methods: {
     isGfycat() {
-      return this.link.match(/https:\/\/gfycat\.com/)
+      return /https:\/\/gfycat\.com/.test(this.link)
+    },
+    isGiphy() {
+      return /https:\/\/media\.giphy\.com/.test(this.link)
     },
     getMore() {
       axios.get(`http://54.169.131.28/api/gifs/${this.terms.join('_')}?count=10`)
