@@ -1,7 +1,7 @@
 <template lang="pug">
 section.container
   .column
-    .gif-container( @dblclick="googleThis")
+    .gif-container( @click="googleThis")
       video( v-if="format == 'mp4'", preload="auto", autoplay, loop, muted, key="mp4")
         source( :src="addExt('mp4')", type="video/mp4")
       div( v-else-if="fromGfycat", style='position:relative;padding-bottom:57%', key="gfycat")
@@ -13,15 +13,15 @@ section.container
     #blurb {{ blurb }}
     #actions
       #icons
-        h2 Share!
+        h3 Share!
         a( :href="shareToWhatsapp", data-action="share/whatsapp/share")
           i.fa.fa-whatsapp
       #rand(v-if="train.length == 0")
-        h2 More?
+        h3 More?
         a( @click="getMore")
           i.fa.fa-random
       #next(v-else)
-        h2 More!
+        h3 More!
         a( @click="getNext")
           i.fa.fa-arrow-right
 
@@ -39,7 +39,7 @@ export default {
     console.log(params.query)
     if (!params.query) return axios.get(`http://54.169.131.28/api/gifs`)
     else if (params.query[0] == '#') return axios.get(`http://54.169.131.28/api/gifs/tag/${params.query.substring(1)}`)
-    else return axios.get(`http://54.169.131.28/api/gifs/${params.query}`)
+    else return axios.get(`http://localhost:3000/api/gifs/${params.query}`)
       .then((res) => {
         return res.data
       })
@@ -122,6 +122,11 @@ export default {
 </script>
 
 <style lang="stylus">
+.body
+  width: 100%
+  padding: 20px 0
+  text-align: center
+
 .column
   width:100%
   max-width: 980px
@@ -141,13 +146,13 @@ export default {
 
 #icons
   padding: 5px
-  font-size: 60px
+  font-size: 30px
   flex: 1
   border-right: rgba(0, 0, 0, 0.1) solid 0.1px
 
 #rand, #next
   padding: 5px 20px
-  font-size: 60px
+  font-size: 30px
 
 #actions
   display: flex
