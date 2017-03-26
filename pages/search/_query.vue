@@ -39,7 +39,7 @@ export default {
     console.log(params.query)
     if (!params.query) return axios.get(`http://54.169.131.28/api/gifs`)
     else if (params.query[0] == '#') return axios.get(`http://54.169.131.28/api/gifs/tag/${params.query.substring(1)}`)
-    else return axios.get(`http://localhost:3000/api/gifs/${params.query}`)
+    else return axios.get(`http://54.169.131.28/api/gifs/${params.query}`)
       .then((res) => {
         return res.data
       })
