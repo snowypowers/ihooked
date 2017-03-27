@@ -1,7 +1,7 @@
 {
   "name": "ihooke",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "Platform for educational gifs",
   "author": "Yak Jun Xiang <snowypowers@gmail.com>",
   "private": true,
   "scripts": {
